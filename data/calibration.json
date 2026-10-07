@@ -1,0 +1,587 @@
+{
+  "_meta": {
+    "created": "2026-08-05",
+    "description": "DVP microsimulation calibration data: Gardiner Expressway (km 0) to Hwy 401 (km 15)",
+    "coordinate": "NB = northbound (toward Hwy 401, outbound from downtown); SB = southbound (toward Gardiner, inbound to downtown)"
+  },
+  "aadt": {
+    "corridorWideWeekdayAverage": {
+      "value": 135000,
+      "unit": "vehicles/weekday",
+      "provenance": "published",
+      "note": "City of Toronto official website states ~135,000 weekday average for the DVP corridor"
+    },
+    "segmentVariation": {
+      "note": "City of Toronto 2015 tolling study states 110,000 vehicles/weekday north of Bayview Ave interchange (km~3.8). South end near Gardiner sees higher volumes. No single corridor-wide measurement at every km. Ramp cross-street counts provide proxy segment evidence.",
+      "northOfBayview_km3p8": {
+        "value": 110000,
+        "unit": "vehicles/weekday",
+        "source": "2015 Tolling Options study, City of Toronto backgroundfile-83671",
+        "provenance": "published"
+      },
+      "southSegmentHigherEstimate": {
+        "value": 145000,
+        "unit": "vehicles/weekday",
+        "provenance": "estimated",
+        "note": "South of Bayview (km 0-3.8) estimated 10-20% higher than 110k due to Lake Shore/Gardiner merge traffic"
+      }
+    },
+    "weekdayVsWeekend": {
+      "note": "No direct weekend volume found for DVP mainline in available open data. Most midblock ATR counts are weekday-only 72h studies.",
+      "provenance": "dataGap"
+    }
+  },
+  "hourlyProfile": {
+    "dataSource": "Combined: Eastern Ave/DVP N Ramp ATR counts 2871386/2871388/2871390 (2021-2023) from Toronto Open Data svc_raw_data_volume_2020_2024.csv; directional split derived from 2001 Toronto Council expansion study cordon count data (published); shape validated against 2017 Bluetooth travel time data",
+    "note": "The Eastern Ave ramp count gives an undirected combined shape for DVP south end (km 0.8). Directional split applied using 2001 cordon ratios: AM peak NB=54%/SB=46%, PM peak NB=49%/SB=51%. CAUTION: This is a ramp-to-arterial count \u2014 it captures vehicles using the Queen/Eastern interchange, not total mainline flow. Shape is consistent with Bluetooth speed patterns.",
+    "northbound": {
+      "provenance": "estimated",
+      "provenance_detail": "Shape from measured Eastern Ave ATR (Toronto Open Data 2021-2023); directional split from published 2001 cordon; combination = estimated",
+      "fractionOfDailyTotal": {
+        "0": 0.019,
+        "1": 0.0096,
+        "2": 0.0062,
+        "3": 0.0038,
+        "4": 0.0042,
+        "5": 0.0076,
+        "6": 0.0218,
+        "7": 0.0451,
+        "8": 0.0535,
+        "9": 0.0485,
+        "10": 0.0455,
+        "11": 0.05,
+        "12": 0.0519,
+        "13": 0.0613,
+        "14": 0.0673,
+        "15": 0.0583,
+        "16": 0.0586,
+        "17": 0.0691,
+        "18": 0.071,
+        "19": 0.0619,
+        "20": 0.0529,
+        "21": 0.049,
+        "22": 0.0457,
+        "23": 0.038
+      },
+      "peakHour": "17:00-18:00 (fraction 0.0710, ~7.1% of daily in one hour)",
+      "amPeakHour": "07:00-09:00 (NB also congested in AM per Bluetooth data)"
+    },
+    "southbound": {
+      "provenance": "estimated",
+      "provenance_detail": "Shape from measured Eastern Ave ATR; directional split from published 2001 cordon",
+      "fractionOfDailyTotal": {
+        "0": 0.0193,
+        "1": 0.0098,
+        "2": 0.0062,
+        "3": 0.0038,
+        "4": 0.0042,
+        "5": 0.0078,
+        "6": 0.0222,
+        "7": 0.039,
+        "8": 0.0463,
+        "9": 0.042,
+        "10": 0.0394,
+        "11": 0.0508,
+        "12": 0.0527,
+        "13": 0.0623,
+        "14": 0.0683,
+        "15": 0.0617,
+        "16": 0.062,
+        "17": 0.0731,
+        "18": 0.0751,
+        "19": 0.0654,
+        "20": 0.0537,
+        "21": 0.0498,
+        "22": 0.0465,
+        "23": 0.0386
+      },
+      "peakHour": "18:00-19:00 (fraction 0.0751, ~7.5% of daily)",
+      "amPeakHour": "07:00-08:00 (SB worst AM congestion: speed drops to 46 km/h at 08:00 per Bluetooth)"
+    },
+    "peakHourFactorObservation": {
+      "note": "2001 cordon counts at 401 give ~5,400-6,500 peak-hour volumes per direction. With ~67,500 vehicles/direction/day (135,000/2), the NB AM peak-hour fraction = 6,350/67,500 = 9.4% (1998 data). This is consistent with HCM K-factor range 0.08-0.10 for urban freeways.",
+      "kFactor_NB_AM_1998": 0.094,
+      "provenance": "published"
+    }
+  },
+  "dowFactors": {
+    "dataSource": "No direct DVP mainline DOW data found in Toronto Open Data. Values from FHWA Traffic Monitoring Guide and HCM typical urban freeway patterns.",
+    "factors": {
+      "Monday": 0.97,
+      "Tuesday": 0.99,
+      "Wednesday": 1.0,
+      "Thursday": 1.01,
+      "Friday": 1.07,
+      "Saturday": 0.8,
+      "Sunday": 0.72
+    },
+    "provenance": "literature",
+    "source": "FHWA Traffic Monitoring Guide (2022) Table 4-2: Urban interstate seasonal/DOW patterns. Friday typically 5-8% above weekday average; weekend 20-28% below weekday average for commuter-dominated urban freeways.",
+    "note": "No measured DOW data found for DVP in Toronto Open Data. Ramp count records are mostly single-week 72-hour captures that do not span full weeks."
+  },
+  "observedSpeeds": {
+    "dataSource": "City of Toronto Open Data: Travel Times - Bluetooth (2017 dataset, resource 02e78a5e-cf4f-40b2-91dd-3a454675c3bf from package travel-times-bluetooth). Segments E_F through J_K (NB) and K_J through F_E (SB) identified as DVP mainline (100 km/h design speed per normalDrivingTime field in bluetooth_routes_wgs84.dbf, total ~14.9 km NB = corridor from Gardiner junction to Hwy 401). Weekday averages only (Mon-Fri 2017). Five-minute aggregates averaged by hour of day.",
+    "year": 2017,
+    "caveat": "Pre-COVID (2017). Post-COVID volumes recovered to ~pre-COVID by 2024 per Downtown Toronto Congestion Study (Parsons 2024), so 2017 data is a reasonable modern-conditions baseline.",
+    "provenance": "measured",
+    "segmentMapping": {
+      "note": "Route IDs from bluetooth_routes_wgs84.dbf (resource f24bd6d6). 100km/h normalDrivingSpeed segments identified as DVP mainline. E=km0 (Gardiner/DVP junction), F=~km2.4, G=~km4.8, H=~km8.5, I=~km11.5, J=~km12.9, K=km15 (Hwy 401). Total corridor: 14.9 km NB / 14.8 km SB.",
+      "segments_NB": [
+        "E_F (2359m)",
+        "F_G (2405m)",
+        "G_H (3693m)",
+        "H_I (2974m)",
+        "I_J (1407m)",
+        "J_K (2069m)"
+      ],
+      "segments_SB": [
+        "K_J (2065m)",
+        "J_I (1409m)",
+        "I_H (2942m)",
+        "H_G (3696m)",
+        "G_F (2412m)",
+        "F_E (2310m)"
+      ]
+    },
+    "corridorAverageSpeed_kmh": {
+      "northbound": {
+        "0": 97.2,
+        "1": 97.4,
+        "2": 96.8,
+        "3": 96.0,
+        "4": 95.2,
+        "5": 96.6,
+        "6": 96.4,
+        "7": 70.4,
+        "8": 48.5,
+        "9": 64.4,
+        "10": 84.4,
+        "11": 83.3,
+        "12": 77.3,
+        "13": 72.7,
+        "14": 51.3,
+        "15": 34.5,
+        "16": 30.8,
+        "17": 27.5,
+        "18": 34.6,
+        "19": 60.8,
+        "20": 85.4,
+        "21": 90.7,
+        "22": 91.9,
+        "23": 96.5
+      },
+      "southbound": {
+        "0": 97.7,
+        "1": 96.5,
+        "2": 95.1,
+        "3": 93.2,
+        "4": 96.9,
+        "5": 100.4,
+        "6": 84.5,
+        "7": 63.3,
+        "8": 46.0,
+        "9": 54.7,
+        "10": 72.3,
+        "11": 78.6,
+        "12": 87.7,
+        "13": 90.4,
+        "14": 87.7,
+        "15": 78.4,
+        "16": 85.4,
+        "17": 74.3,
+        "18": 74.7,
+        "19": 90.1,
+        "20": 95.1,
+        "21": 95.9,
+        "22": 93.4,
+        "23": 98.6
+      }
+    },
+    "keyAnchorPoints": {
+      "NB_worstCongestion": {
+        "hour": 17,
+        "speed_kmh": 27.5,
+        "condition": "PM peak, outbound toward 401"
+      },
+      "NB_AM_congestion": {
+        "hour": 8,
+        "speed_kmh": 48.5,
+        "condition": "AM peak NB also congested"
+      },
+      "SB_worstCongestion": {
+        "hour": 8,
+        "speed_kmh": 46.0,
+        "condition": "AM peak, inbound to downtown"
+      },
+      "SB_PM_moderate": {
+        "hour": 17,
+        "speed_kmh": 74.3,
+        "condition": "PM peak SB moderate congestion"
+      },
+      "freeFlow": {
+        "speed_kmh": 97.0,
+        "condition": "Overnight 0-5h"
+      }
+    },
+    "endToEndTravelTime": {
+      "freeFlow_minutes": 9.0,
+      "NB_PM_peak_minutes": 32.5,
+      "SB_AM_peak_minutes": 19.4,
+      "note": "Calculated from corridor distance ~14.9km / measured corridor speed. 2015 tolling study reported 34 min end-to-end in AM peak direction (no-toll) consistent with measured NB PM data.",
+      "provenance": "measured"
+    },
+    "segmentSpeeds_hour8_SB": {
+      "note": "Individual segment speeds southbound at 08:00 (worst congestion hour for SB). Segment order: K=km15 to E=km0.",
+      "K_J_km15_to_12.9": 40.0,
+      "J_I_km12.9_to_11.5": 27.0,
+      "I_H_km11.5_to_8.5": 27.0,
+      "H_G_km8.5_to_4.8": 78.0,
+      "G_F_km4.8_to_2.4": 89.0,
+      "F_E_km2.4_to_0": 46.0,
+      "provenance": "measured"
+    },
+    "segmentSpeeds_hour17_NB": {
+      "note": "Individual segment speeds northbound at 17:00 (worst congestion hour for NB). Segment order: E=km0 to K=km15.",
+      "E_F_km0_to_2.4": 74.0,
+      "F_G_km2.4_to_4.8": 29.0,
+      "G_H_km4.8_to_8.5": 100.0,
+      "H_I_km8.5_to_11.5": 28.0,
+      "I_J_km11.5_to_12.9": 22.0,
+      "J_K_km12.9_to_15": 50.0,
+      "provenance": "measured"
+    }
+  },
+  "rampShares": {
+    "dataSource": "Toronto Open Data svc_most_recent_summary_data (resource e90038e7) and svc_summary_data (resource b72cca3a-8190). Ramp cross-street ATR counts from Toronto Open Data midblock dataset. Volumes represent cross-street approach to ramp, not DVP ramp throughput directly.",
+    "note": "DVP ramp throughput is not directly measured in available open data. Values below are ramp terminal cross-street volumes, which are proxies for ramp demand.",
+    "interchanges": [
+      {
+        "name": "Lake Shore / Don Roadway",
+        "km": 0.0,
+        "rampProxyVolume_AADT": null,
+        "note": "No ramp ATR count found in database for this interchange.",
+        "provenance": "dataGap"
+      },
+      {
+        "name": "Richmond / Eastern Ave",
+        "km": 0.8,
+        "rampProxyVolume_AADT": 11496,
+        "location": "Eastern Av E / DVP N Ramp",
+        "count_date": "2023-08-01",
+        "count_id": 3005876,
+        "am_peak_start": "07:30",
+        "am_peak_vol_1hr": 534,
+        "pm_peak_start": "18:00",
+        "pm_peak_vol_1hr": 797,
+        "provenance": "measured"
+      },
+      {
+        "name": "Queen St E",
+        "km": 1.2,
+        "rampProxyVolume_AADT": 4893,
+        "location": "Queen St E / DVP N Ramp",
+        "count_date": "2011-05-05",
+        "count_id": "60014518",
+        "am_peak_start": "07:45",
+        "am_peak_vol_1hr": 285,
+        "pm_peak_start": "14:15",
+        "pm_peak_vol_1hr": 371,
+        "provenance": "measured"
+      },
+      {
+        "name": "Dundas St E",
+        "km": 1.6,
+        "rampProxyVolume_AADT": 7726,
+        "location": "Dundas St E / DVP N Ramp",
+        "count_date": "2011-05-05",
+        "am_peak_start": "07:45",
+        "am_peak_vol_1hr": 536,
+        "provenance": "measured"
+      },
+      {
+        "name": "Danforth / Pottery Rd",
+        "km": 2.7,
+        "rampProxyVolume_AADT": null,
+        "note": "No DVP-ramp-specific ATR count found for Danforth interchange.",
+        "provenance": "dataGap"
+      },
+      {
+        "name": "Bayview Ave / Bloor St",
+        "km": 3.8,
+        "rampComponents": {
+          "BayviewBloor_DVP_NRamp": {
+            "AADT": 10902,
+            "count_date": "2011-05-05",
+            "am_peak_vol_1hr": 569,
+            "pm_peak_vol_1hr": 875,
+            "provenance": "measured"
+          },
+          "BayviewBloor_DVP_SRamp": {
+            "AADT": 6431,
+            "count_date": "2011-05-05",
+            "am_peak_vol_1hr": 720,
+            "pm_peak_vol_1hr": 389,
+            "provenance": "measured"
+          },
+          "BloorRamp_approach": {
+            "AADT": 58239,
+            "count_date": "2013-05-14",
+            "note": "Bloor W / Bayview N Ramp approach \u2014 this is the Bloor arterial approaching the DVP ramp, not just ramp throughput",
+            "am_peak_vol_1hr": 5124,
+            "pm_peak_vol_1hr": 5106,
+            "provenance": "measured"
+          }
+        }
+      },
+      {
+        "name": "Don Mills Rd",
+        "km": 7.0,
+        "rampComponents": {
+          "DonMillsN_DVP_NRamp": {
+            "AADT": 10412,
+            "count_date": "2011-05-05",
+            "am_peak_start": "07:15",
+            "am_peak_vol_1hr": 1036,
+            "pm_peak_start": "14:00",
+            "pm_peak_vol_1hr": 451,
+            "provenance": "measured"
+          },
+          "DonMillsN_DVP_SRamp": {
+            "AADT": 3528,
+            "count_date": "2011-05-05",
+            "am_peak_vol_1hr": 365,
+            "provenance": "measured"
+          },
+          "DVP_DonMills_NRamp_exit": {
+            "AADT": 9883,
+            "count_date": "2011-05-05",
+            "am_peak_vol_1hr": 736,
+            "pm_peak_vol_1hr": 1104,
+            "provenance": "measured"
+          },
+          "DonMills_crossStreet_mainline": {
+            "AADT": 39287,
+            "count_date": "2010-03-09",
+            "note": "Don Mills Rd mainline near DVP ramp, not just the ramp itself",
+            "am_peak_vol_1hr": 2498,
+            "pm_peak_vol_1hr": 2545,
+            "provenance": "measured"
+          }
+        }
+      },
+      {
+        "name": "Eglinton Ave E",
+        "km": 10.0,
+        "rampComponents": {
+          "EglintonE_DVP_NRamp": {
+            "AADT": 25409,
+            "count_date": "2023-05-09",
+            "am_peak_start": "08:15",
+            "am_peak_vol_1hr": 1397,
+            "pm_peak_start": "17:00",
+            "pm_peak_vol_1hr": 1665,
+            "provenance": "measured"
+          },
+          "EglintonW_DVP_NRamp": {
+            "AADT": 7983,
+            "count_date": "2023-05-11",
+            "am_peak_start": "06:30",
+            "am_peak_vol_1hr": 505,
+            "provenance": "measured"
+          },
+          "EglintonDVP_SRamp": {
+            "AADT": 16763,
+            "count_date": "2013-03-26",
+            "am_peak_start": "09:15",
+            "am_peak_vol_1hr": 1710,
+            "pm_peak_start": "15:30",
+            "pm_peak_vol_1hr": 1054,
+            "provenance": "measured"
+          },
+          "note": "Eglinton is among the highest-volume interchanges. Cross-street AADT at ramp approaches ~22,000-30,000."
+        }
+      },
+      {
+        "name": "Wynford Dr",
+        "km": 10.7,
+        "rampComponents": {
+          "Wynford_DVP_NRamp": {
+            "AADT": 14464,
+            "count_date": "2023-10-17",
+            "am_peak_start": "08:15",
+            "am_peak_vol_1hr": 1188,
+            "pm_peak_start": "17:00",
+            "pm_peak_vol_1hr": 1112,
+            "provenance": "measured"
+          },
+          "DVP_Wynford_SRamp_exit": {
+            "AADT": 9254,
+            "count_date": "2011-04-28",
+            "am_peak_start": "08:45",
+            "am_peak_vol_1hr": 775,
+            "pm_peak_start": "16:45",
+            "pm_peak_vol_1hr": 642,
+            "provenance": "measured"
+          }
+        }
+      },
+      {
+        "name": "Lawrence Ave E",
+        "km": 11.8,
+        "rampComponents": {
+          "LawrenceW_DVP_NRamp": {
+            "AADT": 45648,
+            "count_date": "2020-02-11",
+            "am_peak_start": "08:30",
+            "am_peak_vol_1hr": 2433,
+            "pm_peak_start": "18:00",
+            "pm_peak_vol_1hr": 3309,
+            "provenance": "measured"
+          },
+          "LawrenceE_DVP_SRamp": {
+            "AADT": 29303,
+            "count_date": "2020-02-04",
+            "am_peak_start": "08:00",
+            "am_peak_vol_1hr": 2455,
+            "pm_peak_start": "17:15",
+            "pm_peak_vol_1hr": 2440,
+            "provenance": "measured"
+          },
+          "DVP_LawrenceE_exit": {
+            "AADT": 5937,
+            "count_date": "2011-04-28",
+            "provenance": "measured"
+          },
+          "note": "Lawrence is the highest-demand interchange by ramp approach AADT: 45,648 (2020)."
+        }
+      },
+      {
+        "name": "York Mills Rd",
+        "km": 14.0,
+        "rampComponents": {
+          "YorkMills_DVP_NRamp": {
+            "AADT": 12467,
+            "count_date": "2014-09-16",
+            "am_peak_start": "08:15",
+            "am_peak_vol_1hr": 780,
+            "pm_peak_start": "17:00",
+            "pm_peak_vol_1hr": 1430,
+            "provenance": "measured"
+          },
+          "DVP_YorkMills_exit": {
+            "AADT": 14478,
+            "count_date": "2014-09-16",
+            "am_peak_start": "08:15",
+            "am_peak_vol_1hr": 1653,
+            "pm_peak_start": "15:15",
+            "pm_peak_vol_1hr": 883,
+            "provenance": "measured"
+          }
+        }
+      },
+      {
+        "name": "Highway 401",
+        "km": 15.0,
+        "rampComponents": {
+          "DVP_Hwy401_E_Ramp": {
+            "AADT": 31201,
+            "count_date": "2000-10-03",
+            "am_peak_start": "07:30",
+            "am_peak_vol_1hr": 1678,
+            "pm_peak_start": "17:45",
+            "pm_peak_vol_1hr": 2051,
+            "provenance": "measured"
+          },
+          "DVP_Hwy401_CollectorsW_Ramp": {
+            "AADT": 20463,
+            "count_date": "2000-10-04",
+            "am_peak_start": "07:15",
+            "am_peak_vol_1hr": 1544,
+            "provenance": "measured"
+          },
+          "note": "Hwy 401 ramp counts are from 2000 \u2014 oldest in the dataset. Combined ramp AADT ~51,664."
+        }
+      }
+    ],
+    "rankedByRampDemand": {
+      "note": "Ranking from highest to lowest inferred ramp demand, based on cross-street proxy AADT:",
+      "ranking": [
+        "1. Lawrence Ave E (km 11.8): 45,648 cross-street AADT at ramp approach (2020, measured)",
+        "2. Hwy 401 (km 15.0): ~51,664 combined ramp volumes (2000 data, measured but aged)",
+        "3. Eglinton Ave E (km 10.0): 25,409 cross-street AADT at ramp approach (2023, measured)",
+        "4. Bayview/Bloor (km 3.8): 58,239 at Bloor arterial (arterial AADT not just ramp; measured 2013)",
+        "5. Wynford Dr (km 10.7): 14,464 at ramp approach (2023, measured)",
+        "6. York Mills Rd (km 14.0): 12,467-14,478 at ramp terminal (2014, measured)",
+        "7. Don Mills Rd (km 7.0): 10,412 at ramp terminal (2011, measured)",
+        "8. Eastern/Richmond (km 0.8): 11,496 (2023, measured)",
+        "9. Dundas St E (km 1.6): 7,726 (2011, measured)",
+        "10. Queen St E (km 1.2): 4,893 (2011, measured)",
+        "11. Lake Shore/Don Roadway (km 0.0): no data (dataGap)",
+        "12. Danforth/Pottery Rd (km 2.7): no data (dataGap)"
+      ]
+    }
+  },
+  "sources": [
+    {
+      "url": "https://ckan0.cf.opendata.inter.prod-toronto.ca/api/3/action/package_show?id=traffic-volumes-midblock-vehicle-speed-volume-and-classification-counts",
+      "note": "Toronto Open Data: Traffic Volumes - Midblock. Used summary resources (e90038e7, b72cca3a-8190) to find DVP-adjacent ATR count locations, daily volumes, AM/PM peak hours and volumes for all DVP-adjacent counts."
+    },
+    {
+      "url": "https://ckan0.cf.opendata.inter.prod-toronto.ca/dataset/7a0ac637-43da-4e42-a79c-6d8279e21d85/resource/2aef8448-455c-4d61-8480-4fa38b5acf9a/download/svc_raw_data_volume_2020_2024.csv",
+      "note": "Toronto Open Data: Raw 15-minute volume data 2020-2024. Downloaded (2.5MB) and parsed. Found 3 Eastern Ave/DVP N Ramp counts (2871386/2871388/2871390, 2021-2023) providing measured undirected hourly volume shape."
+    },
+    {
+      "url": "https://ckan0.cf.opendata.inter.prod-toronto.ca/api/3/action/package_show?id=travel-times-bluetooth",
+      "note": "Toronto Open Data: Travel Times - Bluetooth. Downloaded 2017 dataset (resource 02e78a5e, 1.8MB compressed). Downloaded route shapes (resource f24bd6d6). Parsed DBF and CSV. Identified DVP as segments E-K (~14.9km). Computed corridor and segment average speeds by hour on weekdays."
+    },
+    {
+      "url": "https://www.toronto.ca/services-payments/streets-parking-transportation/road-maintenance/bridges-and-expressways/expressways/don-valley-parkway/",
+      "note": "City of Toronto DVP page. Source for 135,000 weekday average statistic and basic corridor facts."
+    },
+    {
+      "url": "https://www.toronto.ca/legdocs/mmis/2015/ex/bgrd/backgroundfile-83671.pdf",
+      "note": "City of Toronto 2015 Tolling Options study. Source for: 110,000 vehicles/weekday north of Bayview; AM peak no-toll travel time 34 min and avg speed 26 km/h; both-direction peak congestion characterization."
+    },
+    {
+      "url": "https://www.toronto.ca/legdocs/2001/agendas/council/cc010724/plt8rpt/cl002.pdf",
+      "note": "City of Toronto 2001 DVP Expansion proposal. Source for: peak-hour cordon counts at Hwy 401 (1987-1998 series); directional split: NB AM 6,350 / SB AM 5,410 (1998); design capacity ~1,600 veh/hr/lane; outbound-dominant AM flow interpretation."
+    }
+  ],
+  "dataGaps": [
+    {
+      "item": "DVP mainline ATR counts",
+      "detail": "No count records with location matching DVP mainline (not ramp) found in Toronto Open Data midblock counts. All ATR counts are on ramp connections to cross-streets or cross-street approaches. Directional mainline volumes by hour are not available in open data.",
+      "workaround": "Bluetooth travel times for speed; Eastern Ave ramp ATR for volume shape; 2001 cordon for directional split"
+    },
+    {
+      "item": "RESCU loop detector data",
+      "detail": "Confirmed deprecated/inactive by user. Not attempted.",
+      "workaround": "N/A"
+    },
+    {
+      "item": "HERE probe speed data",
+      "detail": "Licensed data, not publicly available.",
+      "workaround": "Bluetooth 2017 data used instead"
+    },
+    {
+      "item": "Bluetooth 2018-2023 data",
+      "detail": "Open data portal only has 2014-2017 Bluetooth data. 2017 dataset used as most recent available.",
+      "workaround": "2017 data used; pre-COVID conditions. Post-COVID recovery confirmed to match pre-COVID levels per Parsons 2024 study."
+    },
+    {
+      "item": "Weekend DVP mainline volumes",
+      "detail": "No weekend ATR count found for DVP mainline or adjacent ramps in available open data.",
+      "workaround": "DOW factors from FHWA literature"
+    },
+    {
+      "item": "Lake Shore/Don Roadway and Danforth interchange ramp volumes",
+      "detail": "No ATR count records found for km 0.0 and km 2.7 interchanges in available data.",
+      "workaround": "Inferred as lower-demand based on absence and low volumes at nearby km 0.8-1.6 interchanges"
+    },
+    {
+      "item": "Directional hourly volume fractions (NB and SB separately)",
+      "detail": "Eastern Ave ramp count is a single direction on a one-way ramp. True bidirectional mainline hourly counts do not exist in open data. The hourly profile is estimated by applying a directional split (from 2001 cordon) to the undirected ramp count shape.",
+      "workaround": "Bluetooth speed data independently validates the shape: both directions show AM congestion, NB shows strong PM congestion, consistent with estimated volume distribution"
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+node_modules/
+*.log
+# raw OpenStreetMap downloads (large; see README for the queries)
+geo/arterials.json
+geo/secondary.json
+geo/parks.json
+geo/rail.json
+geo/river.json
+geo/shore.json
+geo/dvp_ways.json
+geo/junctions.json
+geo/preview*.png
+v1_backup/
+baseline.txt
+dvp-simulation.html
+# never commit third-party routing output (licence terms forbid redistribution)
+geo/route_raw.json
+geo/decode.py
+.env
+*.pem
+*.key
