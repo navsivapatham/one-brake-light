@@ -2,7 +2,17 @@
 
 **A live, vehicle-by-vehicle simulation of Toronto's Don Valley Parkway, from Hwy 401 to the Gardiner, built to answer one question: what happens when a single driver taps the brakes?**
 
-Open `index.html` in a browser. It is one self-contained file with no build step, server or API keys. Press **▶ Watch the story** for a narrated 90-second demo. It taps the same 1.2-second brake on a Sunday morning, where the traffic absorbs it, and on a Thursday at 9:00 a.m., where it cascades into a multi-kilometre jam.
+To run it, download `index.html` and open it in a browser. It is one self-contained file with no build step, server or API keys. Press **▶ Watch the story** for a narrated 90-second demo. It taps the same 1.2-second brake on a Sunday morning, where the traffic absorbs it, and on a Thursday at 9:00 a.m., where it cascades into a multi-kilometre jam.
+
+![The live corridor on a Thursday morning: every point of light is a driver, with the close-up camera, the time picker and the time × distance strip](docs/overview.svg)
+
+<table><tr>
+<td width="50%"><img src="docs/brake-cascade.svg" alt="After one 1.2-second brake tap: 140 drivers caught across 1.3 km"></td>
+<td width="50%"><img src="docs/validation.svg" alt="Under the hood: simulated corridor speeds against measured City of Toronto Bluetooth speeds"></td>
+</tr><tr>
+<td><sub>One 1.2-second tap at Thursday 9:00 a.m. southbound rippled back 1.3 km and caught 140 drivers before fading out. Exact counts vary from run to run.</sub></td>
+<td><sub>Validation: simulated speed by hour (dashed) against measured Bluetooth speeds (solid), both directions.</sub></td>
+</tr></table>
 
 ## What you're looking at
 
@@ -52,6 +62,7 @@ python3 geo/build_geo.py   # rebuilds src/geo.js from raw OSM downloads (see bel
 | `src/geo.js` | Projected map geometry (generated) |
 | `data/calibration.json` | Raw research data with per-number provenance |
 | `data/calibration.built.json` | Fitted demand table and validation output |
+| `docs/` | README screenshots (JPEGs wrapped in SVG) |
 
 `geo/build_geo.py` expects raw Overpass API downloads in `geo/`. These aren't committed because of their size, about 8 MB. The queries used, each with bounding box `(43.635,-79.42,43.785,-79.28)` unless noted:
 
@@ -75,4 +86,6 @@ The corridor centreline is built from the two OSM carriageways alone (chained by
 - Treiber, Hennecke & Helbing (2000), *Congested traffic states in empirical observations and microscopic simulations*
 - Kesting, Treiber & Helbing (2007), *General lane-changing model MOBIL for car-following models*
 
-No licence has been chosen for the code yet. The map geometry in `src/geo.js` is derived from OpenStreetMap and stays under the ODbL.
+## Licence
+
+The code is released under the [MIT License](LICENSE). The map geometry in `src/geo.js` (and the copy embedded in `index.html`) is derived from OpenStreetMap data and remains under the [Open Database License](https://opendatacommons.org/licenses/odbl/). © OpenStreetMap contributors.
